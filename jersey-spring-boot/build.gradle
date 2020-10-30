@@ -9,7 +9,7 @@
 
 buildscript {
     ext {
-        springBootVersion = '2.0.2.BUILD-SNAPSHOT'
+        springBootVersion = '2.3.5.BUILD-SNAPSHOT'
     }
     repositories {
         mavenCentral()
@@ -43,3 +43,4 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-jersey')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+

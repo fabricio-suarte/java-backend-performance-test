@@ -16,7 +16,7 @@ object CreateNewCustomer {
   var customer = exec( http("CreateNewCustomer")
     .post("/customer")
     .header("Content-Type", "application/json")
-    .body( StringBody( """{"name": "Customer X", "address": "Address X", "birthDate": 862029931759}""") ).asJSON
+    .body( StringBody( """{"name": "Customer X", "address": "Address X", "birthDate": 862029931759}""") ).asJson
     .check(status is 201))
 }
 
@@ -26,7 +26,7 @@ class LoadSimulation extends Simulation {
   var usersWriting = 18000 // 600 requests per second
 
   val httpConf = http
-    .baseURL("http://localhost:8080/test-backend")
+    .baseUrl("http://localhost:8080/test-backend")
     .acceptHeader("text/html,application/json")
     .acceptLanguageHeader("en-US,en;q=0.5")
     .acceptEncodingHeader("gzip, deflate")
@@ -41,8 +41,8 @@ class LoadSimulation extends Simulation {
   ).protocols(httpConf)*/
 
   setUp(
-    listing.inject( rampUsers(usersQuerying) over (t seconds) ),
-    registering.inject( rampUsers(usersWriting) over (t seconds) )
+    listing.inject( rampUsers(usersQuerying) during (t seconds) ),
+    registering.inject( rampUsers(usersWriting) during (t seconds) )
   ).protocols(httpConf)
 
 }
